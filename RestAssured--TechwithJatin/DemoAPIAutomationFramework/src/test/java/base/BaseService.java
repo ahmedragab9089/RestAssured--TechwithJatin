@@ -18,10 +18,17 @@ public class BaseService {
         this.requestSpecification = given().baseUri(BASE_URL);
     }
 
-    protected Response postRequest(Object payload, String endpoiunt){
+    protected Response postRequest(Object payload, String endpoint){
         return requestSpecification.contentType(ContentType.JSON)
                 .body(payload)
-                .post(endpoiunt);
+                .post(endpoint);
+    }
+
+    protected Response postRequest(String BASE_URL, Object payload, String endpoint){
+        return requestSpecification.baseUri(BASE_URL)
+                .contentType(ContentType.JSON)
+                .body(payload)
+                .post(endpoint);
     }
 
 
