@@ -5,6 +5,8 @@ import io.restassured.specification.RequestSpecification;
 import request.LoginRequest;
 import request.SignupRequest;
 
+import java.util.HashMap;
+
 public class AuthService extends BaseService{
     //constructor
     public AuthService(RequestSpecification requestSpecification) {
@@ -20,7 +22,10 @@ public class AuthService extends BaseService{
         return postRequest(payload, BASE_PATH + "/signup");
     }
 
-    public Response forgetPassword(String payload){
-        return postRequest(payload, BASE_PATH + "/signup");
+    public Response forgetPassword(String emailAddress){
+        HashMap<String, String> payload = new HashMap<String, String>();
+        payload.put("email", emailAddress);
+         return postRequest(payload, BASE_PATH + "/forgot-password");
     }
+
 }
